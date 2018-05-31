@@ -14,7 +14,7 @@ export default {
   name: "Counter",
   data: () => ({
     msg: "Kuboolin board",
-    currentValue: null
+    currentValue: "Loading"
   }),
   methods: {
     counterUp: function() {
@@ -29,6 +29,10 @@ export default {
     }
   },
   created: function() {
+    const sse = new EventSource("http://localhost:8080/api/counter");
+    sse.onmessage = event => {
+      this.currentValue = JSON.parse(event.data).value;
+    };
     axios.get(`/hello`).then(response => (this.msg = response.data));
     axios
       .get(`/api/counter`)
@@ -42,5 +46,19 @@ export default {
 h1,
 h2 {
   font-weight: normal;
+}
+
+button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  margin: 2em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 25%;
 }
 </style>
