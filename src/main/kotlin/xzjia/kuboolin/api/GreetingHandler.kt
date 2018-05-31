@@ -13,7 +13,7 @@ class GreetingHandler() {
         return ServerResponse
             .ok()
             .body(
-                fromObject("こんにちは world, serving from ${InetAddress.getLocalHost().hostName}")
+                fromObject("${InetAddress.getLocalHost().hostName}")
             )
     }
 }
