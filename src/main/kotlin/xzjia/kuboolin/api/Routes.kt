@@ -12,7 +12,7 @@ class Routes(private val counterHandler: CounterHandler, private val greetingHan
     @Bean
     fun counterRouter() = router {
         accept(MediaType.TEXT_HTML).nest {
-            GET("/", greetingHandler::greeting)
+            GET("/hello", greetingHandler::greeting)
         }
         "/api/counter".nest {
             accept(MediaType.APPLICATION_JSON).nest {
