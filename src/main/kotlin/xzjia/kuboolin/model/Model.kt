@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 data class CounterState(val value: Long, val asOf: LocalDateTime = LocalDateTime.now(), val by: String = InetAddress.getLocalHost().hostName)
 
-sealed class CounterEvent(val type: String, val at: LocalDateTime = LocalDateTime.now())
+sealed class CounterEvent(val type: String, val at: LocalDateTime = LocalDateTime.now(), val by: String = InetAddress.getLocalHost().hostName)
 
 data class CounterUp(val value: Long): CounterEvent("UP")
 
