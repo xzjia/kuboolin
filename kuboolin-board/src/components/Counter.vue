@@ -10,6 +10,8 @@
 <script>
 import axios from "axios";
 
+const apiEndpoint = "http://35.200.78.71";
+
 export default {
   name: "Counter",
   data: () => ({
@@ -19,23 +21,25 @@ export default {
   methods: {
     counterUp: function() {
       axios
-        .put(`/api/counter/up`)
+        .put(`${apiEndpoint}/api/counter/up`)
         .then(response => (this.currentValue = response.data.value));
     },
     counterDown: function() {
       axios
-        .put(`/api/counter/down`)
+        .put(`${apiEndpoint}/api/counter/down`)
         .then(response => (this.currentValue = response.data.value));
     }
   },
   created: function() {
-    const sse = new EventSource("http://localhost:8080/api/counter");
+    const sse = new EventSource(`${apiEndpoint}/api/counter`);
     sse.onmessage = event => {
       this.currentValue = JSON.parse(event.data).value;
     };
-    axios.get(`/hello`).then(response => (this.msg = response.data));
     axios
-      .get(`/api/counter`)
+      .get(`${apiEndpoint}/hello`)
+      .then(response => (this.msg = response.data));
+    axios
+      .get(`${apiEndpoint}/api/counter`)
       .then(response => (this.currentValue = response.data.value));
   }
 };
