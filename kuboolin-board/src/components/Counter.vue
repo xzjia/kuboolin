@@ -10,7 +10,7 @@
 <script>
 import axios from "axios";
 
-const apiEndpoint = "http://35.200.78.71";
+const apiEndpoint = "";
 
 export default {
   name: "Counter",
