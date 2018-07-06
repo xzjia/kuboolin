@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuboolin
+  labels:
+    app: kuboolin
+spec:
+  selector:
+    matchLabels:
+      app: kuboolin
+      tier: frontend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: kuboolin
+        tier: frontend
+    spec:
+      containers:
+      - name: kuboolin
+        image: "xzjia/kuboolin:v1.0a"
+        ports:
+        - containerPort: 6379
