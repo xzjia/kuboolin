@@ -18,6 +18,4 @@ spec:
     spec:
       containers:
       - name: kuboolin
-        image: "xzjia/kuboolin:v1.0a"
-        ports:
-        - containerPort: 6379
+        image: "xzjia/kuboolin:v1.1a"
